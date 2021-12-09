@@ -108,8 +108,6 @@ class WorksCitedPage:
 
     def __init__(self, pageName, start):
         self.name = pageName
-        self.length = 0
-        self.startLine = start
         self.lastEdited, self.friendlyLastEdited = None, None
         self.Update()
         self.works = []
@@ -142,13 +140,11 @@ class WorksCitedPage:
 
     def addWork(self):
         self.works.append(Website())
-        self.length = len(self.works)
         self.Update()
         self.sortWorks()
 
     def removeWork(self, index):
         del self.works[index]
-        self.length = len(self.works)
         self.Update()
 
     def sortWorks(self):
@@ -234,7 +230,7 @@ if __name__ == "__main__":
 
     while True:
         # if no pages exist, make new page
-        if file.length == 0:
+        if len(file.pages) == 0:
             print("\nThe file destination has no Works Cited Pages. Adding Page...")
             name = input("Please name the new page\n")
             file.addPage(name)
