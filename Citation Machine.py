@@ -181,8 +181,17 @@ class ListOfPages:
         return self.pages[index]
 
     def loadPages(self):
-        with open(self.file, 'rb') as f:
-            self.pages = pickle.load(f)
+
+        try:
+            with open(self.file, 'rb') as f:
+                
+                try:
+                    self.pages = pickle.load(f)
+                except:
+                    print("\nFILE EMPTY")
+        except:
+            f = open(self.file, 'x')
+
         f.close()
 
     def savePages(self):
